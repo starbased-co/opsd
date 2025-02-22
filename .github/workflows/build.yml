@@ -54,7 +54,7 @@ jobs:
         with:
           context: .
           build-args: |
-            VERSION=$version
+            VERSION={{ env.version }}
           push: false
           load: true
           tags: rootfsimage
@@ -73,11 +73,11 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         run: |
           docker plugin create "docker.io/${{ secrets.DOCKER_USERNAME }}/opsd" ${PWD}/plugin
-          docker plugin push "docker.io/${{ secrets.DOCKER_USERNAME }}/opsd" ${PWD}/plugin
+          docker plugin push "docker.io/${{ secrets.DOCKER_USERNAME }}/opsd"
 
       - name: Publish tagged
         if: ${{ github.event_name != 'pull_request' && startsWith(github.ref, 'refs/tags/') }}
         run: |
           docker plugin rm "docker.io/${{ secrets.DOCKER_USERNAME }}/opsd" || true
           docker plugin create "docker.io/${{ secrets.DOCKER_USERNAME }}/opsd:${{ github.ref_name }}" ${PWD}/plugin
-          docker plugin push "docker.io/${{ secrets.DOCKER_USERNAME }}/opsd:${{ github.ref_name }}" ${PWD}/plugin
+          docker plugin push "docker.io/${{ secrets.DOCKER_USERNAME }}/opsd:${{ github.ref_name }}"
