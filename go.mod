@@ -1,4 +1,4 @@
-module github.com/mrmarble/op-docker-secrets-driver
+module github.com/mrmarble/opsd
 
 go 1.24.0
 
