@@ -54,7 +54,7 @@ jobs:
         with:
           context: .
           build-args: |
-            VERSION={{ env.version }}
+            VERSION=${{ env.version }}
           push: false
           load: true
           tags: rootfsimage
