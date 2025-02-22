@@ -1,0 +1,7 @@
+plugin
+1password-credentials.json
+docker-compose.yaml
+Taskfile.yaml
+config.local.json
+docker-compose.yaml
+.gitignore

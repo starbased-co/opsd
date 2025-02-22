@@ -1,0 +1,48 @@
+{
+	"description": "OnePassword Connect driver for Docker",
+	"documentation": "https://github.com/mrmarble/op-docker-secrets-driver",
+	"entrypoint": [
+		"/opsd"
+	],
+	"interface": {
+		"types": [
+			"docker.secretprovider/1.0"
+		],
+		"socket": "opsd.sock"
+	},
+	"network": {
+		"type": "host"
+	},
+	"env": [
+		{
+			"name": "OP_CONNECT_HOST",
+			"description": "OnePassword connect host",
+			"value": "http://localhost:8080"
+		},
+		{
+			"name": "OP_CONNECT_TOKEN",
+			"description": "OnePassword connect token",
+			"value": ""
+		},
+		{
+			"name": "OP_VAULT_NAME",
+			"description": "OnePassword vault used for secrets",
+			"value": "docker"
+		}
+	],
+	"mounts": [
+		{
+			"destination": "/var/run/docker.sock",
+			"source": "/var/run/docker.sock",
+			"options": [
+				"rbind"
+			],
+			"type": "bind"
+		}
+	],
+	"linux": {
+		"capabilities": [
+			"CAP_SYS_ADMIN"
+		]
+	}
+}
