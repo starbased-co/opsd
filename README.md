@@ -1,6 +1,6 @@
 # Docker OnePassword Secrets Plugin
-![docker pulls](https://badgen.net/docker/pulls/mrmarble/opsd?icon=docker)
-![license](https://badgen.net/static/license/MIT/blue)
+[![](https://badgen.net/docker/pulls/mrmarble/opsd?icon=docker)](https://hub.docker.com/r/mrmarble/opsd)
+[![license](https://badgen.net/static/license/MIT/blue)](LICENSE)
 
 This project provides a Docker plugin to use OnePassword as a secrets provider. It allows Docker containers to securely access secrets stored in OnePassword. The plugin uses the OnePassword Connect API to retrieve secrets and provide them to Docker containers.
 
