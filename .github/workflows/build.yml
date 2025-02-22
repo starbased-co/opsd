@@ -46,12 +46,23 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          build-args: |
+            VERSION=$(git describe --tags --dirty --always --abbrev=12)
+          push: false
+          load: true
+          tags: rootfsimage
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Export
         run: |
-          docker buildx build --pull --tag rootfsimage --build-arg VERSION=$(git describe --tags --dirty --always --abbrev=12) .
           id=$(docker create rootfsimage true)
           mkdir -p ./plugin/rootfs/
-          docker export "$id" | tar -x -C ./plugin/rootfs/
           cp config.json ./plugin/
+          docker export "$id" | tar -x -C ./plugin/rootfs/
           docker rm -vf "$id"
 
       - name: Publish latest
@@ -63,4 +74,6 @@ jobs:
       - name: Publish tagged
         if: ${{ github.event_name != 'pull_request' && startsWith(github.ref, 'refs/tags/') }}
         run: |
+          docker plugin rm "docker.io/${{ secrets.DOCKER_USERNAME }}/opsd" || true
+          docker plugin create "docker.io/${{ secrets.DOCKER_USERNAME }}/opsd:${{ github.ref_name }}" ${PWD}/plugin
           docker plugin push "docker.io/${{ secrets.DOCKER_USERNAME }}/opsd:${{ github.ref_name }}" ${PWD}/plugin
