@@ -1,3 +1,4 @@
+// This is a simple docker secrets plugin that uses the 1Password Connect API to fetch secrets.
 package main
 
 import (
@@ -15,6 +16,7 @@ type OPSecretsDriver struct {
 	vaultName string
 }
 
+// Get gets a secret from a remote secret store
 func (d OPSecretsDriver) Get(req secrets.Request) secrets.Response {
 	log.Printf("Secret request: %#v", req)
 	var itemName string
