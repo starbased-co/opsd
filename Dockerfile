@@ -5,7 +5,6 @@ WORKDIR /go/src/app
 COPY . .
 
 RUN go mod download
-RUN go vet -v
 
 RUN GOAMD64=v2 GCO_ENABLED=0 \
   go build -o /go/bin/opsd \
