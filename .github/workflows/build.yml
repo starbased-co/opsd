@@ -47,10 +47,11 @@ jobs:
 
       - name: Build
         run: |
-          docker build --pull --tag rootfsimage .
+          docker buildx build --pull --tag rootfsimage --build-arg VERSION=$(git describe --tags --dirty --always --abbrev=12) .
           id=$(docker create rootfsimage true)
           mkdir -p ./plugin/rootfs/
           docker export "$id" | tar -x -C ./plugin/rootfs/
+          cp config.json ./plugin/
           docker rm -vf "$id"
 
       - name: Publish latest
