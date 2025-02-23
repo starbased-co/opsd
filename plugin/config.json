@@ -1,6 +1,6 @@
 {
 	"description": "OnePassword Connect driver for Docker",
-	"documentation": "https://github.com/mrmarble/op-docker-secrets-driver",
+	"documentation": "https://github.com/mrmarble/opsd",
 	"entrypoint": [
 		"/opsd"
 	],
