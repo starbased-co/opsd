@@ -30,7 +30,6 @@ tasks:
       - mkdir -p ./plugin/rootfs
       - docker create --name opsd-rootfs {{.PLUGIN_NAME}}:rootfs
       - docker export opsd-rootfs | tar -x -C ./plugin/rootfs
-      - cp config.json ./plugin/
       - docker rm -vf opsd-rootfs
 
   create:
