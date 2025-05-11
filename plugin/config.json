@@ -17,19 +17,19 @@
 		{
 			"name": "OP_CONNECT_HOST",
 			"description": "OnePassword connect host",
-      "settable": ["value"],
+			"settable": ["value"],
 			"value": "http://localhost:8080"
 		},
 		{
 			"name": "OP_CONNECT_TOKEN",
 			"description": "OnePassword connect token",
-      "settable": ["value"],
+			"settable": ["value"],
 			"value": ""
 		},
 		{
 			"name": "OP_VAULT_NAME",
 			"description": "OnePassword vault used for secrets",
-      "settable": ["value"],
+			"settable": ["value"],
 			"value": "docker"
 		}
 	],
